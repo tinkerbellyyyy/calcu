@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+
+<style>
+    body{
+        background-color: wheat;
+
+
+    }
+    .calcu{
+        padding: 10px;
+        border-radius: 1em;
+        height: 300px;
+        width:400px;
+        margin:auto;
+        background-color: brown;
+        align-items: center;
+    }
+    #result {
+        background-color: whitesmoke;
+        border: 1px solid rgb(185, 152, 89);
+        border-radius: 10px;
+        width: 110%;
+        height: 70px;
+        margin-left: 30px;
+        margin-top: 30px;
+        font-size: 40px;
+        text-align: right;
+    }
+    .opr-btn{
+        border: 1px solid bisque;
+        border-radius:10px;
+        width:70px;
+        height: 60px;
+        margin: 10px;
+        margin-top:20px;
+        font-family:Arial, Helvetica, sans-serif;
+        background-color: burlywood;
+        transform: translateY(10px);
+        box-shadow: 0 0 30px;
+    }
+    .num-btn {
+    border: 1px solid white;
+    border-radius:10px;
+    width:70px;
+    height: 60px;
+    margin: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    transform: translateY(5px);
+    box-shadow:0 0 30px;
+    background-color: burlywood;
+    opacity: 0.6;
+    
+    
+    }
+    
+
+    .equal-btn {
+        border: 1px solid white;
+        border-radius:10px;
+        width:70px;
+        height: 60px;
+        margin: 10px;
+        background: rgb(204, 137, 50);
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        transform: translateY(5px);
+        box-shadow: 0 0 30px;
+        background-color:rgb(233, 179, 97);
+    }
+
+    .dot-btn{
+        background:burlywood;
+        border: 1px solid white;
+        border-radius:10px;
+        width:70px;
+        height: 60px;
+        margin: 10px;
+        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        transform: translateY(5px);
+        box-shadow:0 0 30px;
+        
+    }
+
+</style>
+<body>
+<table class="calcu">
+    <tr>
+        <td colspan="3"><input type="text" id="result" disabled placeholder="0" value="0"disabled></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" class="opr-btn" value="C" onclick="clearInput()"></td>
+        <td><input type="button" class="opr-btn" value="DEL" onclick="deleteone()"></td>
+        <td><input type="button" class="opr-btn" value="%" onclick="percent()"></td>
+        <td><input type="button" class="opr-btn" value="/" onclick="devide()"></td>
+    </tr>
+    <tr>
+        <td><input type="button" class="num-btn" value="7" onclick="appendNumber(7)"></td>
+        <td><input type="button" class="num-btn" value="8" onclick="appendNumber(8)"></td>
+        <td><input type="button" class="num-btn" value="9" onclick="appendNumber(9)"></td>
+        <td> <input type="button" class="opr-btn" value="+" onclick="add()"></td> 
+    </tr>
+    
+    <tr>
+        <td><input type="button" class="num-btn" value="6" onclick="appendNumber(6)"></td>
+        <td><input type="button" class="num-btn" value="5" onclick="appendNumber(5)"></td>
+        <td><input type="button" class="num-btn" value="4" onclick="appendNumber(4)"></td>
+        <td> <input type="button" class="opr-btn" value="-" onclick="minus()"></td> 
+    </tr>
+    
+    <tr>
+        <td><input type="button" class="num-btn" value="1" onclick="appendNumber(1)"></td>
+        <td><input type="button" class="num-btn" value="2" onclick="appendNumber(2)"></td>
+        <td><input type="button" class="num-btn" value="3" onclick="appendNumber(3)"></td>
+        <td> <input type="button" class="opr-btn" value="*" onclick="multiply()"></td> 
+    </tr>
+
+    <tr>
+        <td><input type="button" class="dot-btn" value="." onclick="appendNumber('.')"></td>
+        <td><input type="button" class="num-btn" value="0" onclick="appendNumber(0)"></td>
+        <td><input type="button" class="num-btn" value="00" onclick="appendNumber('00')"></td>
+        <td><input type="button" class="equal-btn" value="=" onclick="calculate()"></td>
+        
+    </tr>
+</table>
+    <script>
+    let currentInput='';
+    let currentOperator='';
+        function appendNumber(number) {
+            currentInput +=  number;
+            document.getElementById('result').value = currentInput
+
+
+        }
+        function devide(){
+            currentOperator= '/';
+            currentInput +=currentOperator;
+            document.getElementById('result').value = currentInput
+        }
+
+        function calculate(){
+            const result = eval(currentInput);
+            document.getElementById('result').value=result;
+            currentInput = result.toString();
+            currentOperator = '';
+
+        }
+        function clearInput() {
+            currentOperator=''
+            currentInput=''
+            document.getElementById('result').value ='';
+        }
+        function multiply(){
+            currentOperator='*';
+            currentInput +=currentOperator;
+            document.getElementById('result').value = currentInput
+        }
+        function minus(){
+            currentOperator='-';
+            currentInput +=currentOperator;
+            document.getElementById('result').value = currentInput
+        }
+
+
+        function add(){
+            currentOperator='+';
+            currentInput +=currentOperator;
+            document.getElementById('result').value = currentInput
+        }
+
+        function dot(){
+            currentOperator='.';
+            currentInput +=currentOperator;
+            document.getElementById('result').value = currentInput
+        }
+
+        function deleteone() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;
+        }
+
+        function percent() {
+            const per = currentInput/100;
+            document.getElementById('result').value = per;
+        }
+
+
+
+
+
+    </script>
+    
+
+</body>
+</html>
